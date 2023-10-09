@@ -1,0 +1,54 @@
+To install CUDA on Ubuntu 22.04 and resolve the "No devices were found" issue, you can follow these steps:
+
+1. Install NVIDIA GPU Drivers:
+Make sure you have the latest NVIDIA GPU drivers installed. You can use the following commands:
+
+bash
+Copy code
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update
+sudo apt-get install nvidia-driver-<version>
+Replace <version> with the appropriate version number for your GPU.
+
+2. Verify GPU Driver Installation:
+Check if the GPU driver is properly installed:
+
+bash
+Copy code
+nvidia-smi
+You should see information about your GPU. If it still says "No devices were found," there might be an issue with the driver installation.
+
+3. Install CUDA Toolkit:
+Download the CUDA Toolkit from the official NVIDIA website: CUDA Toolkit Downloads
+
+Choose the appropriate version for your system and follow the installation instructions provided on the download page.
+
+4. Update Environment Variables:
+Add the following lines to your shell profile file (e.g., ~/.bashrc or ~/.zshrc):
+
+bash
+Copy code
+export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+Replace 11.0 with the version you installed.
+
+Then, reload your profile:
+
+bash
+Copy code
+source ~/.bashrc   # or source ~/.zshrc if you use Zsh
+5. Verify CUDA Installation:
+Check if CUDA is installed correctly:
+
+bash
+Copy code
+nvcc --version
+This command should display the CUDA version.
+
+6. Reboot:
+Reboot your system to apply any changes.
+
+bash
+Copy code
+sudo reboot
+After these steps, the nvidia-smi command should recognize your GPU, and CUDA should be properly installed on your Ubuntu 22.04 system. If you encounter any issues during the installation, refer to the official CUDA documentation for troubleshooting.
